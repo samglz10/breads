@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
   
 // LISTEN
 app.listen(PORT, () => {
-  console.log('nomming at port', PORT);
+  console.log('nomming at port http://localhost:3003', PORT);
 })

@@ -31,9 +31,7 @@ app.get('/', (req, res) => {
   const breadsController = require('./controllers/breads_controller.js')
   app.use('/breads', breadsController)
 // NEW
-app.get('/new', (req, res) => {
-  res.render('new')
-})
+
 
 // 404 Page
 app.get('*', (req, res) => {

@@ -12,7 +12,7 @@ function Edit ({bread, index}) {
           name="name"
           id="name"
           required
-          defaultValue={bread.'name'}
+          defaultValue={bread.name}
         />
         <label htmlFor="image">Image</label>
         <input

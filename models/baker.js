@@ -9,21 +9,32 @@ const bakerSchema = new Schema({
         type: String,
         required: true,
         enum: ['Rachel', 'Monica', 'Joey', 'Chandler','Ross', 'Phoebe'],
-        {toJSON: { virtuals: true}})
+        toJSON: { virtuals: true }
     },
     startDate: {
         type: Date, 
         required: true
     },
     bio: String,
-}
+})
 // Model and Export
 const Baker = mongoose.model('Baker', bakerSchema)
+
+// hooks 
+// hooks 
+bakerSchema.post('findOneAndDelete', function() {
+    Bread.deleteMany({ baker: this._conditions._id })
+        .then(deleteStatus => {
+            console.log(deleteStatus)
+        })
+  })
+         
+
 
 //Virtuals
 bakerSchema.virtual('breads', {
     ref: 'Bread',
-    localFiled:'_id',
+    localField:'_id',
     foreignField:'baker'
 })
 

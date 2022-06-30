@@ -21,7 +21,6 @@ const bakerSchema = new Schema({
 const Baker = mongoose.model('Baker', bakerSchema)
 
 // hooks 
-// hooks 
 bakerSchema.post('findOneAndDelete', function() {
     Bread.deleteMany({ baker: this._conditions._id })
         .then(deleteStatus => {
@@ -29,8 +28,6 @@ bakerSchema.post('findOneAndDelete', function() {
         })
   })
          
-
-
 //Virtuals
 bakerSchema.virtual('breads', {
     ref: 'Bread',

@@ -1,16 +1,15 @@
 const express = require('express')
 const breads = express.Router()
 const Bread = require('../models/bread.js')
+
 //Baker Model Added
 const Baker = require('../models/baker')
 
 
 // INDEX
-breads.get('/', (req, res) => {
-  Baker.find()
-  .then(foundBakers => {
-    Bread.find()
-      .then(foundBreads => {
+breads.get('/', async (req, res) => {
+  const foundBakers = await Baker.find().lean()
+  const foundBreads = await Bread.find().limit(2).lean()
         res.render('index',{
           breads: foundBreads,
           bakers: foundBakers,
@@ -18,8 +17,7 @@ breads.get('/', (req, res) => {
         })
         console.log(foundBreads)
       })
-    })
-  })
+  
 
 // BAKERS
 breads.get('/new', (req,res) => {
